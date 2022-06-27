@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   enable_if.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agirona <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 17:07:51 by agirona           #+#    #+#             */
-/*   Updated: 2022/06/27 14:29:42 by agirona          ###   ########lyon.fr   */
+/*   Created: 2022/06/27 14:30:14 by agirona           #+#    #+#             */
+/*   Updated: 2022/06/27 16:45:18 by agirona          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./reverse_iterator.hpp"
-#include <iostream>
-#include <list>
+#ifndef ENABLE_IF_HPP
+# define ENABLE_IF_HPP
 
-int		main(void)
+namespace	ft
 {
-	std::list<int>				lst;
-	std::list<int>::iterator	it;
+	template <bool, typename T = void>
+	struct enable_if
+	{
 
-	lst.push_back(5);
-	lst.push_back(10);
-	lst.push_back(15);
-	it = lst.begin();
-	it++;
-	ft::reverse_iterator<std::list<int>::iterator>	rit(it);
-	std::cout << *rit << std::endl;
-	std::cout << *++rit << std::endl;
-	return (0);
-}
+	};
+
+	template <typename T>
+	struct enable_if<true, T>
+	{
+		typedef T type;
+	};
+};
+
+#endif
